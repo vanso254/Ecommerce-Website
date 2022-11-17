@@ -46,6 +46,7 @@ exports.getSignup = (req, res, next) => {
 exports.postLogin = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
+  const name= req.body.name;
   User.findOne({ email: email })
     .then(user => {
       if (!user) {
@@ -60,7 +61,8 @@ exports.postLogin = (req, res, next) => {
             req.session.user = user;
             return req.session.save(err => {
               console.log(err);
-              res.redirect('/');
+              req.session.name=true;
+            res.redirect('/');
             });
           }
           req.flash('error', 'Invalid email or password.');
