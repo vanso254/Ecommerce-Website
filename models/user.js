@@ -15,11 +15,6 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  role:{
-    type: String.apply,
-    default:'admin',
-    required: true
-  },
   resetToken: String,
   resetTokenExpiration: Date,
   cart: {
@@ -33,7 +28,12 @@ const userSchema = new Schema({
         quantity: { type: Number, required: true }
       }
     ]
-  }
+  },
+  role:{
+    type: String,
+    default:'admin',
+    required: true
+  },
 });
 
 userSchema.methods.addToCart = function(product) {
